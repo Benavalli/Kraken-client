@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <style name="TitleBody" parent="TextAppearance.AppCompat.Body1" />
+
+    <style name="SubtitleBody" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+</resources>
