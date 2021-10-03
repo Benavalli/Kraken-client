@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.krakenclient.model.DeviceWeatherResponse
-import com.example.krakenclient.model.RelayResponse
 import com.example.krakenclient.model.WeatherResponse
 import com.example.krakenclient.network.CityWeatherRepository
 import com.example.krakenclient.network.KrakenServerRepository

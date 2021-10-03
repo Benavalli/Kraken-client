@@ -1,28 +1,30 @@
 package com.example.krakenclient.network
 
-import com.example.krakenclient.model.RelayResponse
-import com.example.krakenclient.model.WeatherResponse
+import com.example.krakenclient.model.GrowWeatherResponse
+import com.example.krakenclient.model.Relay
+import com.example.krakenclient.model.RelaysResponse
 import io.reactivex.Single
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface KrakenServerEndpoint {
 
     @GET("temperature-humidity")
-    fun getServerWeather(): Single<WeatherResponse>
+    fun getServerWeather(): Single<GrowWeatherResponse>
 
-    @GET("relays-state")
-    fun getRelaysState(): Single<List<RelayResponse>>
+    @GET("relays")
+    fun getRelays(): Single<RelaysResponse>
 
     @POST("pump-relay-state")
-    fun postPumpRelayState(): Single<RelayResponse>
+    fun postPumpRelayState(@Body state: String): Single<Relay>
 
     @POST("light-relay-state")
-    fun postLightRelayState(): Single<RelayResponse>
+    fun postLightRelayState(@Body state: String): Single<Relay>
 
     @POST("humidifier-relay-state")
-    fun postHumidifierRelayState(): Single<RelayResponse>
+    fun postHumidifierRelayState(@Body state: String): Single<Relay>
 
     @POST("exhaust-relay-state")
-    fun postExhaustRelayState(): Single<RelayResponse>
+    fun postExhaustRelayState(@Body state: String): Single<Relay>
 }

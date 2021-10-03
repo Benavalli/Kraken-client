@@ -24,4 +24,7 @@
     <string name="exhaust_title">Exhaust</string>
     <string name="humidifier_title">Humidifier</string>
     <string name="home_pressure_title">Pressure:</string>
+
+    <string name="temperature_value_mask">%.0f C°</string>
+    <string name="humidity_value_mask">%.0f</string>
 </resources>
