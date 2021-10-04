@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Kraken Client</string>
-    <string name="humidity_title">Humidity:</string>
+    <string name="humidity_title">Hum.:</string>
     <string name="home_title">Home</string>
-    <string name="temperature_title">Temperature:</string>
+    <string name="temperature_title">Temp.:</string>
     <string name="grow_title">Grow</string>
     <string name="thumbnail_text">Touch to start streaming</string>
     <string name="dashboard_menu_title">Dashboard</string>
@@ -14,7 +14,6 @@
     <string name="nav_header_subtitle">V 1.0.0</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
@@ -24,4 +23,6 @@
     <string name="exhaust_title">Exhaust</string>
     <string name="humidifier_title">Humidifier</string>
     <string name="home_pressure_title">Pressure:</string>
+    <string name="temperature_value_mask">%.0f C°</string>
+    <string name="humidity_value_mask">%.0f</string>
 </resources>

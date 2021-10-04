@@ -11,6 +11,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 val networkModule = module {
     single { providesCityWeatherApi(get()) }
@@ -32,9 +33,16 @@ fun providesKrakenServerApi(gson: Gson): KrakenServerEndpoint {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(gson))
         .baseUrl(BuildConfig.KRAKEN_SERVER_BASE_URL)
-        .client(OkHttpClient.Builder().build())
+        .client(providesKrakenServerOkHttpClient())
         .build()
     return retrofit.create(KrakenServerEndpoint::class.java)
+}
+
+private fun providesKrakenServerOkHttpClient(): OkHttpClient {
+    return OkHttpClient.Builder()
+        .readTimeout(30, TimeUnit.SECONDS)
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .build()
 }
 
 private fun providesWeatherCityOkHttpClient(): OkHttpClient {

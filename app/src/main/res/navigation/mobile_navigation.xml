@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/nav_switches"
-        android:name="com.example.krakenclient.SwitchesFragment"
+        android:name="com.example.krakenclient.features.switches.SwitchesFragment"
         android:label="Switches" />
 
     <fragment

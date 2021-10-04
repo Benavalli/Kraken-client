@@ -44,15 +44,15 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val cityWeatherObserver = Observer<WeatherResponse> { cityWeather ->
-            updateCityWeather(cityWeather.temperature, cityWeather.roundedHumidity)
+            updateCityWeather(cityWeather.temp, cityWeather.humidity)
         }
 
         val deviceWeatherObserver = Observer<DeviceWeatherResponse> { deviceWeather ->
-            updateDeviceWeather(deviceWeather.temperature, deviceWeather.roundedPressure)
+            updateDeviceWeather(deviceWeather.temp, deviceWeather.pressure)
         }
 
         val growWeatherObserver = Observer<WeatherResponse> { growWeather ->
-            updateGrowWeather(growWeather.temperature, growWeather.roundedHumidity)
+            updateGrowWeather(growWeather.temp, growWeather.humidity)
         }
 
         viewModel.cityWeather.observe(viewLifecycleOwner, cityWeatherObserver)
@@ -64,19 +64,19 @@ class DashboardFragment : Fragment() {
         viewModel.getDeviceWeather()
     }
 
-    private fun updateCityWeather(temperature: Int, humidity: Int) {
+    private fun updateCityWeather(temperature: Double, humidity: Double) {
         binding.cityTitle.text = "Sunnyvale"
-        binding.cityTemperatureValue.text = temperature.toString()
-        binding.cityHumidityValue.text = humidity.toString()
+        binding.cityTemperatureValue.text = getString(R.string.temperature_value_mask, temperature)
+        binding.cityHumidityValue.text = getString(R.string.humidity_value_mask, humidity)
     }
 
-    private fun updateDeviceWeather(temperature: Int, pressure: Int) {
-        binding.homeTemperatureValue.text = temperature.toString()
+    private fun updateDeviceWeather(temperature: Float, pressure: Float) {
+        binding.homeTemperatureValue.text = getString(R.string.temperature_value_mask, temperature)
         binding.homePressureValue.text = pressure.toString()
     }
 
-    private fun updateGrowWeather(temperature: Int, humidity: Int) {
-        binding.growTemperatureValue.text = temperature.toString()
-        binding.growHumidityValue.text = humidity.toString()
+    private fun updateGrowWeather(temperature: Double, humidity: Double) {
+        binding.growTemperatureValue.text = getString(R.string.temperature_value_mask, temperature)
+        binding.growHumidityValue.text = getString(R.string.humidity_value_mask, humidity)
     }
 }
