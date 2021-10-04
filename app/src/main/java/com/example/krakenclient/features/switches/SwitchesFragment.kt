@@ -20,23 +20,6 @@ class SwitchesFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSwitchesBinding.inflate(inflater, container, false)
-
-        binding.lightSwitch.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.changeLightRelayState(isChecked)
-        }
-
-        binding.pumpSwitch.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.changePumpRelayState(isChecked)
-        }
-
-        binding.humidifierSwitch.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.changeHumidifierRelayState(isChecked)
-        }
-
-        binding.exhaustSwitch.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.changeExhaustRelayState(isChecked)
-        }
-
         return binding.root
     }
 
@@ -57,18 +40,34 @@ class SwitchesFragment: Fragment() {
     }
 
     private fun setupLightSwitch(enabled: Boolean) {
+        binding.lightSwitch.setOnCheckedChangeListener(null)
         binding.lightSwitch.isChecked = enabled
+        binding.lightSwitch.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.changeLightRelayState(isChecked)
+        }
     }
 
     private fun setupPumpSwitch(enabled: Boolean) {
+        binding.pumpSwitch.setOnCheckedChangeListener(null)
         binding.pumpSwitch.isChecked = enabled
+        binding.pumpSwitch.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.changePumpRelayState(isChecked)
+        }
     }
 
     private fun setupHumidifierSwitch(enabled: Boolean) {
+        binding.humidifierSwitch.setOnCheckedChangeListener(null)
         binding.humidifierSwitch.isChecked = enabled
+        binding.humidifierSwitch.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.changeHumidifierRelayState(isChecked)
+        }
     }
 
     private fun setupExhaustSwitch(enabled: Boolean) {
+        binding.exhaustSwitch.setOnCheckedChangeListener(null)
         binding.exhaustSwitch.isChecked = enabled
+        binding.exhaustSwitch.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.changeExhaustRelayState(isChecked)
+        }
     }
 }

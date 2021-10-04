@@ -9,6 +9,8 @@ data class Relay(val device: String, val pin: Int, val state: String) {
         get() = state == RelayStatus.ENABLED.name
 }
 
+data class RelayStateRequest(val state: String)
+
 enum class RelayType { LIGHT, PUMP, HUMIDIFIER, EXHAUST }
 
 enum class RelayStatus { ENABLED, DISABLED }

@@ -61,7 +61,7 @@ class DashboardFragment : Fragment() {
 
         viewModel.getCityWeather()
         viewModel.getGrowWeather()
-        //viewModel.getDeviceWeather()
+        viewModel.getDeviceWeather()
     }
 
     private fun updateCityWeather(temperature: Double, humidity: Double) {

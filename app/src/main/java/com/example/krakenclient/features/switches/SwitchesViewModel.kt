@@ -3,6 +3,7 @@ package com.example.krakenclient.features.switches
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.krakenclient.model.RelayStateRequest
 import com.example.krakenclient.model.RelayStatus
 import com.example.krakenclient.model.RelayType
 import com.example.krakenclient.network.KrakenServerRepository
@@ -37,37 +38,37 @@ class SwitchesViewModel(private val krakenServerRepository: KrakenServerReposito
 
     fun changeLightRelayState(isEnabled: Boolean) {
         subscription.add(
-            krakenServerRepository.changeLightRelayState(isEnabled.toServerState())
-                .subscribe({ relay ->
-                    lightRelay.value = relay.isEnabled},
-                    { throwable -> Log.e(TAG, throwable.message ?: "") })
+            krakenServerRepository
+                .changeLightRelayState(RelayStateRequest(isEnabled.toServerState()))
+                .doOnError { Log.e(TAG, it.message ?: "") }
+                .subscribe()
         )
     }
 
     fun changePumpRelayState(isEnabled: Boolean) {
         subscription.add(
-            krakenServerRepository.changePumpRelayState(isEnabled.toServerState())
-                .subscribe({ relay ->
-                    pumpRelay.value = relay.isEnabled},
-                    { throwable -> Log.e(TAG, throwable.message ?: "") })
+            krakenServerRepository
+                .changePumpRelayState(RelayStateRequest(isEnabled.toServerState()))
+                .doOnError { Log.e(TAG, it.message ?: "") }
+                .subscribe()
         )
     }
 
     fun changeHumidifierRelayState(isEnabled: Boolean) {
         subscription.add(
-            krakenServerRepository.changeHumidifierRelayState(isEnabled.toServerState())
-                .subscribe({ relay ->
-                    humidifierRelay.value = relay.isEnabled},
-                    { throwable -> Log.e(TAG, throwable.message ?: "") })
+            krakenServerRepository
+                .changeHumidifierRelayState(RelayStateRequest(isEnabled.toServerState()))
+                .doOnError { Log.e(TAG, it.message ?: "") }
+                .subscribe()
         )
     }
 
     fun changeExhaustRelayState(isEnabled: Boolean) {
         subscription.add(
-            krakenServerRepository.changeExhaustRelayState(isEnabled.toServerState())
-                .subscribe({ relay ->
-                    exhaustRelay.value = relay.isEnabled},
-                    { throwable -> Log.e(TAG, throwable.message ?: "") })
+            krakenServerRepository
+                .changeExhaustRelayState(RelayStateRequest(isEnabled.toServerState()))
+                .doOnError { Log.e(TAG, it.message ?: "") }
+                .subscribe()
         )
     }
 
