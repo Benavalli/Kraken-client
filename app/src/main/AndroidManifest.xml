@@ -14,8 +14,10 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:name=".application.KrakenApplication">
 
+        <service android:name=".RoutineService" />
+
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:label="@string/title_activity_main"
             android:screenOrientation="landscape"

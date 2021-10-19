@@ -1,8 +1,8 @@
-package com.example.krakenclient.network
+package com.example.krakenclient.repository
 
-import com.example.krakenclient.model.RelayStateRequest
-import com.example.krakenclient.model.RelaysResponse
-import com.example.krakenclient.model.WeatherResponse
+import com.example.krakenclient.data.RelayStateRequest
+import com.example.krakenclient.data.RelaysResponse
+import com.example.krakenclient.data.WeatherResponse
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -23,13 +23,15 @@ interface KrakenServerRepository {
     fun changeExhaustRelayState(state: RelayStateRequest): Completable
 }
 
-class KrakenServerRepositoryImp(private val endpoint: KrakenServerEndpoint) : KrakenServerRepository {
+class KrakenServerRepositoryImp(
+    private val endpoint: KrakenServerEndpoint
+) : KrakenServerRepository {
 
     override fun getGrowWeather(): Single<WeatherResponse> {
         return endpoint.getServerWeather()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .map { it.main }
+            .map { it.weather }
     }
 
     override fun getRelays(): Single<RelaysResponse> {

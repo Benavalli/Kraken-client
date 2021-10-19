@@ -1,8 +1,8 @@
-package com.example.krakenclient.network
+package com.example.krakenclient.repository
 
-import com.example.krakenclient.model.GrowWeatherResponse
-import com.example.krakenclient.model.RelayStateRequest
-import com.example.krakenclient.model.RelaysResponse
+import com.example.krakenclient.data.GrowWeatherResponse
+import com.example.krakenclient.data.RelayStateRequest
+import com.example.krakenclient.data.RelaysResponse
 import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.Body

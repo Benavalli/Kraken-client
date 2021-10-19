@@ -1,8 +1,8 @@
 package com.example.krakenclient.di
 
 import com.example.krakenclient.BuildConfig
-import com.example.krakenclient.network.CityWeatherEndpoint
-import com.example.krakenclient.network.KrakenServerEndpoint
+import com.example.krakenclient.repository.CityWeatherEndpoint
+import com.example.krakenclient.repository.KrakenServerEndpoint
 import com.google.gson.Gson
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient

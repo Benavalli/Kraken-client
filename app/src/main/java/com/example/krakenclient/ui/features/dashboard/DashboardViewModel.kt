@@ -1,12 +1,13 @@
-package com.example.krakenclient.features.dashboard
+package com.example.krakenclient.ui.features.dashboard
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.krakenclient.model.DeviceWeatherResponse
-import com.example.krakenclient.model.WeatherResponse
-import com.example.krakenclient.network.CityWeatherRepository
-import com.example.krakenclient.network.KrakenServerRepository
+import com.example.krakenclient.data.CityWeatherDto
+import com.example.krakenclient.data.DeviceWeatherResponse
+import com.example.krakenclient.data.WeatherResponse
+import com.example.krakenclient.repository.CityWeatherRepository
+import com.example.krakenclient.repository.KrakenServerRepository
 import com.example.krakenclient.things.RainbowHatManager
 import io.reactivex.disposables.CompositeDisposable
 
@@ -21,15 +22,15 @@ class DashboardViewModel(
     }
 
     private val subscription = CompositeDisposable()
-    val cityWeather: MutableLiveData<WeatherResponse> by lazy { MutableLiveData<WeatherResponse>() }
+    val cityWeather: MutableLiveData<CityWeatherDto> by lazy { MutableLiveData<CityWeatherDto>() }
     val growWeather: MutableLiveData<WeatherResponse> by lazy { MutableLiveData<WeatherResponse>() }
     val deviceWeather: MutableLiveData<DeviceWeatherResponse> by lazy { MutableLiveData<DeviceWeatherResponse>() }
 
     fun getCityWeather() {
         subscription.add(
-            cityWeatherRepository.getCityWeather("sunnyvale").subscribe({
+            cityWeatherRepository.getCityWeather().subscribe({
                 cityWeather.value = it
-            }, { throwable -> Log.e(TAG, throwable.message ?: "") })
+            }, { throwable -> Log.e(TAG, throwable.message.orEmpty()) })
         )
     }
 
@@ -37,12 +38,16 @@ class DashboardViewModel(
         subscription.add(
             krakenServerRepository.getGrowWeather().subscribe({
                 growWeather.value = it
-            }, { throwable -> Log.e(TAG, throwable.message ?: "") })
+            }, { throwable -> Log.e(TAG, throwable.message.orEmpty()) })
         )
     }
 
     fun getDeviceWeather() {
-        deviceWeather.value = rainbowHatManager.getTemperatureHumidity()
+        subscription.add(
+            rainbowHatManager.getTemperatureHumidity().subscribe({
+                deviceWeather.value = it
+            }, { throwable -> Log.e(TAG, throwable.message.orEmpty()) })
+        )
     }
 
     override fun onCleared() {

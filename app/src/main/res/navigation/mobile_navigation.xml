@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/nav_dashboard"
-        android:name="com.example.krakenclient.features.dashboard.DashboardFragment"
+        android:name="com.example.krakenclient.ui.features.dashboard.DashboardFragment"
         android:label="Dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
@@ -21,12 +21,12 @@
 
     <fragment
         android:id="@+id/nav_switches"
-        android:name="com.example.krakenclient.features.switches.SwitchesFragment"
+        android:name="com.example.krakenclient.ui.features.switches.SwitchesFragment"
         android:label="Switches" />
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.example.krakenclient.Settings"
+        android:name="com.example.krakenclient.ui.features.settings.SettingsFragment"
         android:label="Settings" />
 
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.krakenclient.features.dashboard
+package com.example.krakenclient.ui.features.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.krakenclient.R
 import com.example.krakenclient.databinding.FragmentDashboardBinding
-import com.example.krakenclient.model.DeviceWeatherResponse
-import com.example.krakenclient.model.WeatherResponse
+import com.example.krakenclient.data.CityWeatherDto
+import com.example.krakenclient.data.DeviceWeatherResponse
+import com.example.krakenclient.data.WeatherResponse
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -43,8 +44,12 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val cityWeatherObserver = Observer<WeatherResponse> { cityWeather ->
-            updateCityWeather(cityWeather.temp, cityWeather.humidity)
+        val cityWeatherObserver = Observer<CityWeatherDto> { cityWeatherDto ->
+            updateCityWeather(
+                cityWeatherDto.city,
+                cityWeatherDto.weather.temp,
+                cityWeatherDto.weather.humidity
+            )
         }
 
         val deviceWeatherObserver = Observer<DeviceWeatherResponse> { deviceWeather ->
@@ -64,8 +69,8 @@ class DashboardFragment : Fragment() {
         viewModel.getDeviceWeather()
     }
 
-    private fun updateCityWeather(temperature: Double, humidity: Double) {
-        binding.cityTitle.text = "Sunnyvale"
+    private fun updateCityWeather(city: String, temperature: Double, humidity: Double) {
+        binding.cityTitle.text = city
         binding.cityTemperatureValue.text = getString(R.string.temperature_value_mask, temperature)
         binding.cityHumidityValue.text = getString(R.string.humidity_value_mask, humidity)
     }

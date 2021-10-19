@@ -1,4 +1,4 @@
-package com.example.krakenclient.features.switches
+package com.example.krakenclient.ui.features.switches
 
 import android.os.Bundle
 import android.view.LayoutInflater

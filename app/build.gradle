@@ -83,6 +83,8 @@ dependencies {
     implementation "io.insert-koin:koin-android:3.1.2"
 
     implementation 'com.google.android.things.contrib:driver-rainbowhat:1.0'
+    implementation 'androidx.work:work-runtime-ktx:2.6.0'
+    implementation 'androidx.work:work-rxjava2:2.6.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

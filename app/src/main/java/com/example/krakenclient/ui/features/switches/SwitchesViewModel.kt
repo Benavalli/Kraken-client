@@ -1,12 +1,12 @@
-package com.example.krakenclient.features.switches
+package com.example.krakenclient.ui.features.switches
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.krakenclient.model.RelayStateRequest
-import com.example.krakenclient.model.RelayStatus
-import com.example.krakenclient.model.RelayType
-import com.example.krakenclient.network.KrakenServerRepository
+import com.example.krakenclient.data.RelayStateRequest
+import com.example.krakenclient.data.RelayStatus
+import com.example.krakenclient.data.RelayType
+import com.example.krakenclient.repository.KrakenServerRepository
 import io.reactivex.disposables.CompositeDisposable
 
 class SwitchesViewModel(private val krakenServerRepository: KrakenServerRepository) : ViewModel() {
